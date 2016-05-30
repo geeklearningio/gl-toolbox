@@ -1,35 +1,32 @@
-﻿// list of assets to generate
-var assets = [
-    { "name": "screen-hdpi-landscape", "width": 800, "height": 480, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-ldpi-landscape", "width": 320, "height": 200, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-mdpi-landscape", "width": 480, "height": 320, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-xhdpi-landscape", "width": 1280, "height": 720, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-xxhdpi-landscape", "width": 1600, "height": 1900, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-xxxhdpi-landscape", "width": 1280, "height": 720, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-hdpi-portrait", "width": 480, "height": 800, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-ldpi-portrait", "width": 300, "height": 320, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-mdpi-portrait", "width": 320, "height": 480, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-xhdpi-portrait", "width": 720, "height": 1280, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-xxhdpi-portrait", "width": 1600, "height": 1900, "target": "android", options: { "ninePatch": true } },
-    { "name": "screen-xxxhdpi-portrait", "width": 720, "height": 1280, "target": "android", options: { "ninePatch": true } },
+﻿    var assets = [               
+        { "name": "icon-small", "size": 29, "target": "ios" },
+		{ "name": "icon-small-2x", "size": 58, "target": "ios" },
+		{ "name": "icon-small-3x", "size": 87, "target": "ios" },
+		{ "name": "icon-40", "size": 40, "target": "ios" },
+		{ "name": "icon-40-2x", "size": 80, "target": "ios" },
+		{ "name": "icon-50", "size": 50, "target": "ios" },
+		{ "name": "icon-50-2x", "size": 100, "target": "ios" },
+		{ "name": "icon-57", "size": 57, "target": "ios" },
+		{ "name": "icon-57-2x", "size": 114, "target": "ios" },
+		{ "name": "icon-60", "size": 60, "target": "ios" },
+		{ "name": "icon-60-2x", "size": 120, "target": "ios" },
+		{ "name": "icon-60-3x", "size": 180, "target": "ios" },
+		{ "name": "icon-72", "size": 72, "target": "ios" },
+		{ "name": "icon-72-2x", "size": 144, "target": "ios" },
+		{ "name": "icon-76", "size": 76, "target": "ios" },
+		{ "name": "icon-76-2x", "size": 152, "target": "ios" },        
+		{ "name": "iTunesArtwork", "size": 512, "target": "ios", "omitExtension" : true },
+		{ "name": "iTunesArtwork-2x", "size": 1024, "target": "ios", "omitExtension" : true },
+		{ "name": "icon-83-5-2x", "size": 167, "target": "ios" },
 
-    { "name": "screen-ipad-portrait", "width": 768, "height": 1024, "target": "ios" },
-    { "name": "screen-ipad-portrait-2x", "width": 1536, "height": 2048, "target": "ios" },
-    { "name": "screen-iphone-portrait", "width": 320, "height": 480, "target": "ios" },
-    { "name": "screen-iphone-portrait-2x", "width": 640, "height": 960, "target": "ios" },
-    { "name": "screen-iphone-portrait-568h", "width": 640, "height": 1136, "target": "ios" },
-    { "name": "screen-iphone-portrait-667h", "width": 750, "height": 1334, "target": "ios" },
-    { "name": "screen-iphone-portrait-736h", "width": 1242, "height": 2208, "target": "ios" },
-    { "name": "screen-ipad-landscape", "width": 1024, "height": 768, "target": "ios" },
-    { "name": "screen-ipad-landscape-2x", "width": 2048, "height": 1536, "target": "ios" },
-    { "name": "screen-iphone-landscape", "width": 480, "height": 320, "target": "ios" },
-    { "name": "screen-iphone-landscape-2x", "width": 960, "height": 640, "target": "ios" },
-    { "name": "screen-iphone-landscape-568h", "width": 1136, "height": 640, "target": "ios" },
-    { "name": "screen-iphone-landscape-667h", "width": 1334, "height": 750, "target": "ios" },
-    { "name": "screen-iphone-landscape-736h", "width": 2208, "height": 1242, "target": "ios" },
-];
-
-// entry point
+        { "name": "icon-36-ldpi", "size": 36, "target": "android" },
+        { "name": "icon-48-mdpi", "size": 48, "target": "android" },
+        { "name": "icon-72-hdpi", "size": 72, "target": "android" },
+        { "name": "icon-96-xhdpi", "size": 96, "target": "android" },
+        { "name": "icon-144-xxhdpi", "size": 144, "target": "android" },
+        { "name": "icon-192-xxxhdpi", "size": 192, "target": "android" },
+    ];
+    
 function main() {
 
     var saveForWeb = new ExportOptionsSaveForWeb();
@@ -135,12 +132,17 @@ function main() {
         var asset = assets[i];
         var options = asset.options ? asset.options : {};
         options[asset.target] = true;
+        asset.width = asset.size;
+        asset.height = asset.size;
+        
+        var destFileName = asset.name + ".png";
+        if (asset.omitExtension) {
+            destFileName = asset.name;
+        }
 
 // duplicate and resize doc
         var newDoc = doc.duplicate(asset.name);
-        var resizeHeight = options.ninePatch ? asset.height - 2 : asset.height
-        newDoc.resizeImage(new UnitValue(sourceRatio * resizeHeight, "px"), new UnitValue(resizeHeight, "px"), null, ResampleMethod.BICUBICSHARPER);
-        newDoc.resizeCanvas(new UnitValue(asset.width, "px"), new UnitValue(asset.height, "px"), AnchorPosition.MIDDLECENTER);
+        newDoc.resizeImage(new UnitValue(asset.size, "px"), new UnitValue(asset.size, "px"), null, ResampleMethod.BICUBICSHARPER);
 
 //apply modifier actions
         for (var index = 0; index < actions.length; index++) {
@@ -151,7 +153,7 @@ function main() {
 // for each variant
         for (var j = 0; j < allVariants.length; j++) {
             var variant = allVariants[j];
-            var outputDir = new Folder(variant.dir + "/screens/" + asset.target);
+            var outputDir = new Folder(variant.dir + "/icons/" + asset.target);
             if (!outputDir.exists) {
                 outputDir.create();
             }
@@ -168,7 +170,7 @@ function main() {
             }
 
 // export document
-            newDoc.exportDocument(new File(outputDir.fullName + "/" + asset.name + ".png"), ExportType.SAVEFORWEB, saveForWeb);
+            newDoc.exportDocument(new File(outputDir.fullName + "/" + destFileName), ExportType.SAVEFORWEB, saveForWeb);
 
 // updating progress
             win.bar.value = (100 * ++current) / total;
@@ -338,3 +340,5 @@ function arrangeShape(x, y, width, height) {
 
 // calling entry point
 main();
+
+
