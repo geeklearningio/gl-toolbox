@@ -1,0 +1,37 @@
+{
+	assets : [               
+        { "name": "icon-small", "size": 29, "target": "ios" },
+		{ "name": "icon-small-2x", "size": 58, "target": "ios" },
+		{ "name": "icon-small-3x", "size": 87, "target": "ios" },
+		{ "name": "icon-40", "size": 40, "target": "ios" },
+		{ "name": "icon-40-2x", "size": 80, "target": "ios" },
+		{ "name": "icon-50", "size": 50, "target": "ios" },
+		{ "name": "icon-50-2x", "size": 100, "target": "ios" },
+		{ "name": "icon-57", "size": 57, "target": "ios" },
+		{ "name": "icon-57-2x", "size": 114, "target": "ios" },
+		{ "name": "icon-60", "size": 60, "target": "ios" },
+		{ "name": "icon-60-2x", "size": 120, "target": "ios" },
+		{ "name": "icon-60-3x", "size": 180, "target": "ios" },
+		{ "name": "icon-72", "size": 72, "target": "ios" },
+		{ "name": "icon-72-2x", "size": 144, "target": "ios" },
+		{ "name": "icon-76", "size": 76, "target": "ios" },
+		{ "name": "icon-76-2x", "size": 152, "target": "ios" },        
+		{ "name": "iTunesArtwork", "size": 512, "target": "ios", "omitExtension" : true },
+		{ "name": "iTunesArtwork-2x", "size": 1024, "target": "ios", "omitExtension" : true },
+		{ "name": "icon-83-5-2x", "size": 167, "target": "ios" },
+
+        { "name": "icon-36-ldpi", "size": 36, "target": "android" },
+        { "name": "icon-48-mdpi", "size": 48, "target": "android" },
+        { "name": "icon-72-hdpi", "size": 72, "target": "android" },
+        { "name": "icon-96-xhdpi", "size": 96, "target": "android" },
+        { "name": "icon-144-xxhdpi", "size": 144, "target": "android" },
+        { "name": "icon-192-xxxhdpi", "size": 192, "target": "android" },
+    ],
+	options : {
+		format : "PNG",
+		transparency : true,
+		quality: 100
+	},
+	source : "C:\\pathto\\source.psd",
+	destination : "C:\\pathto\\outputdirectory"
+}
