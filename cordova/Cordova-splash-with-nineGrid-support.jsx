@@ -168,7 +168,7 @@ function main() {
             }
 
 // export document
-            newDoc.exportDocument(new File(outputDir.fullName + "/" + asset.name + ".png"), ExportType.SAVEFORWEB, saveForWeb);
+            newDoc.exportDocument(new File(outputDir.fullName + "/" + asset.name + (options.ninePatch ? ".9" : "") + ".png"), ExportType.SAVEFORWEB, saveForWeb);
 
 // updating progress
             win.bar.value = (100 * ++current) / total;
@@ -222,7 +222,6 @@ var mods = {
         for (var index = 0; index < params.length; index++) {
             var param = params[index];
             if (param === "right") {
-
                 arrangeShape(doc.width.as('px') - layerWidth - context.layerDetails.rightDist, layer.bounds[1].as('px'), layerWidth, layerHeight)
             }
             if (param === "left") {
@@ -230,7 +229,6 @@ var mods = {
             }
             if (param === "top") {
                 arrangeShape(layer.bounds[0].as('px'), context.layerDetails.top, layerWidth, layerHeight)
-
             }
             if (param === "bottom") {
                 arrangeShape(doc.height.as('px') - layerHeight - context.layerDetails.bottomDist, layer.bounds[1].as('px'), layerWidth, layerHeight)
