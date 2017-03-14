@@ -247,6 +247,14 @@ var mods = {
                 doc.activeLayer = layer;
                 arrangeShape(layer.bounds[0].as('px'), layer.bounds[1].as('px'), context.layerDetails.width, context.layerDetails.height)
             }
+            if (param === "restorex") {
+                doc.activeLayer = layer;
+                arrangeShape(layer.bounds[0].as('px'), layer.bounds[1].as('px'), context.layerDetails.width, layerHeight)
+            }
+            if (param === "restorey") {
+                doc.activeLayer = layer;
+                arrangeShape(layer.bounds[0].as('px'), layer.bounds[1].as('px'), layerWidth, context.layerDetails.height)
+            }
         }
     }
 };
