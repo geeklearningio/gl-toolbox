@@ -1,10 +1,10 @@
 ﻿#include "./json5.jsx"
 
 function readFile(filePath) {
-    var scriptFile = new File(filePath);  
-    scriptFile.open('r');  
-    var content = scriptFile.read();  
-    scriptFile.close();  
+    var scriptFile = new File(filePath);
+    scriptFile.open('r');
+    var content = scriptFile.read();
+    scriptFile.close();
     return content
 }
 
@@ -17,15 +17,15 @@ function main() {
         return;
     }
 
-    alert(manifestPath);
+    //alert(manifestPath);
 
     var rawJson = readFile(manifestPath);
 
-    alert(rawJson);
+    //alert(rawJson);
 
     var content = JSON5.parse(rawJson);
-    
-    alert (content.assets.length);
+
+    //alert (content.assets.length);
 
     var saveForWeb = new ExportOptionsSaveForWeb();
     saveForWeb.format = SaveDocumentType.PNG;
@@ -34,7 +34,7 @@ function main() {
     saveForWeb.quality = 100;
     var doc;
     var wasOpen = false;
-    
+
     if (!app.documents.length) {
         var sourceFile = File.openDialog("Select a 1:1 square PNG file that is at least 1024x1024.", "*.psd", false);
         if (sourceFile == null) {
@@ -61,7 +61,7 @@ function main() {
     var actions = [];
     var variantGroups = [];
 
-// analyzing layers, extracting modifier actions and variants
+    // analyzing layers, extracting modifier actions and variants
     visitLayers(doc.layers, function (layer) {
         if (layer.name) {
             var nameParts = layer.name.split("_");
@@ -102,10 +102,10 @@ function main() {
         }
     });
 
-// sorting variants by priority
+    // sorting variants by priority
     variantGroups.sort(function (a, b) { return a.order - b.order });
 
-// computing cartesian product of all variants
+    // computing cartesian product of all variants
     var allVariants = cross(variantGroups, function (v) { return v.variants });
 
     for (var i = 0; i < allVariants.length; i++) {
@@ -117,10 +117,10 @@ function main() {
         variant.dir = variantDir;
     }
 
-// determining source aspect Ratio
+    // determining source aspect Ratio
     var sourceRatio = doc.width.as("px") / doc.height.as("px");
 
-// initializing progress window
+    // initializing progress window
     var win = new Window("window{text:'Progress',bounds:[100,100,400,150],bar:Progressbar{bounds:[20,20,280,31] , value:0,maxvalue:100}};");
     win.show();
     var total = assets.length * allVariants.length;
@@ -135,19 +135,19 @@ function main() {
             asset.height = asset.size;
         }
 
-// duplicate and resize doc
+        // duplicate and resize doc
         var newDoc = doc.duplicate(asset.name);
         var resizeHeight = options.ninePatch ? asset.height - 2 : asset.height
         newDoc.resizeImage(new UnitValue(sourceRatio * resizeHeight, "px"), new UnitValue(resizeHeight, "px"), null, ResampleMethod.BICUBICSHARPER);
         newDoc.resizeCanvas(new UnitValue(asset.width, "px"), new UnitValue(asset.height, "px"), AnchorPosition.MIDDLECENTER);
 
-//apply modifier actions
+        //apply modifier actions
         for (var index = 0; index < actions.length; index++) {
             var action = actions[index];
             action.mod(newDoc, findLayer(newDoc.layers, action.layer), action.params, { asset: asset, options: options, layerDetails: action.layerDetails, appliedRatio: asset.height / doc.height.as("px") });
         }
 
-// for each variant
+        // for each variant
         for (var j = 0; j < allVariants.length; j++) {
             var variant = allVariants[j];
             var outputDir = new Folder(variant.dir + "/screens/" + asset.target);
@@ -155,7 +155,7 @@ function main() {
                 outputDir.create();
             }
 
-// show the right variant layers
+            // show the right variant layers
             for (var g = 0; g < variant.length; g++) {
                 var group = variant[g];
                 var groupLayer = findLayer(newDoc.layers, group.group.layerName);
@@ -166,25 +166,25 @@ function main() {
                 }
             }
 
-// export document
+            // export document
             newDoc.exportDocument(new File(outputDir.fullName + "/" + asset.name + ".png"), ExportType.SAVEFORWEB, saveForWeb);
 
-// updating progress
+            // updating progress
             win.bar.value = (100 * ++current) / total;
             win.text = 'Progress : ' + current + '/' + total;
         }
 
-// releasing resources 
-        
+        // releasing resources 
 
-            newDoc.close(SaveOptions.DONOTSAVECHANGES);
-            app.activeDocument = doc;
-      
+
+        newDoc.close(SaveOptions.DONOTSAVECHANGES);
+        app.activeDocument = doc;
+
     }
-    
-// closing source document
+
+    // closing source document
     if (wasOpen) {
-        
+
     } else {
         doc.close(SaveOptions.DONOTSAVECHANGES);
     }
@@ -247,6 +247,14 @@ var mods = {
             if (param === "restore") {
                 doc.activeLayer = layer;
                 arrangeShape(layer.bounds[0].as('px'), layer.bounds[1].as('px'), context.layerDetails.width, context.layerDetails.height)
+            }
+            if (param === "restorex") {
+                doc.activeLayer = layer;
+                arrangeShape(layer.bounds[0].as('px'), layer.bounds[1].as('px'), context.layerDetails.width, layerHeight)
+            }
+            if (param === "restorey") {
+                doc.activeLayer = layer;
+                arrangeShape(layer.bounds[0].as('px'), layer.bounds[1].as('px'), layerWidth, context.layerDetails.height)
             }
         }
     }
