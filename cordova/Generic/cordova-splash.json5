@@ -1,0 +1,39 @@
+{
+	assets : [               
+        { "name": "screen-hdpi-landscape", "width": 800, "height": 480, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-ldpi-landscape", "width": 320, "height": 200, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-mdpi-landscape", "width": 480, "height": 320, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-xhdpi-landscape", "width": 1280, "height": 720, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-xxhdpi-landscape", "width": 1600, "height": 1900, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-xxxhdpi-landscape", "width": 1280, "height": 720, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-hdpi-portrait", "width": 480, "height": 800, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-ldpi-portrait", "width": 300, "height": 320, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-mdpi-portrait", "width": 320, "height": 480, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-xhdpi-portrait", "width": 720, "height": 1280, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-xxhdpi-portrait", "width": 1600, "height": 1900, "target": "android", options: { "ninePatch": true } },
+		{ "name": "screen-xxxhdpi-portrait", "width": 720, "height": 1280, "target": "android", options: { "ninePatch": true } },
+
+		{ "name": "screen-ipad-portrait", "width": 768, "height": 1024, "target": "ios" },
+		{ "name": "screen-ipad-portrait-2x", "width": 1536, "height": 2048, "target": "ios" },
+		{ "name": "screen-iphone-portrait", "width": 320, "height": 480, "target": "ios" },
+		{ "name": "screen-iphone-portrait-2x", "width": 640, "height": 960, "target": "ios" },
+		{ "name": "screen-iphone-portrait-568h", "width": 640, "height": 1136, "target": "ios" },
+		{ "name": "screen-iphone-portrait-667h", "width": 750, "height": 1334, "target": "ios" },
+		{ "name": "screen-iphone-portrait-736h", "width": 1242, "height": 2208, "target": "ios" },
+		{ "name": "screen-ipad-landscape", "width": 1024, "height": 768, "target": "ios" },
+		{ "name": "screen-ipad-landscape-2x", "width": 2048, "height": 1536, "target": "ios" },
+		{ "name": "screen-iphone-landscape", "width": 480, "height": 320, "target": "ios" },
+		{ "name": "screen-iphone-landscape-2x", "width": 960, "height": 640, "target": "ios" },
+		{ "name": "screen-iphone-landscape-568h", "width": 1136, "height": 640, "target": "ios" },
+		{ "name": "screen-iphone-landscape-667h", "width": 1334, "height": 750, "target": "ios" },
+		{ "name": "screen-iphone-landscape-736h", "width": 2208, "height": 1242, "target": "ios" },
+    ],
+	options : {
+		format : "PNG",
+		transparency : true,
+		quality: 100
+	},
+	source : "C:\\pathto\\source.psd",
+	destination : "C:\\pathto\\outputdirectory",
+	folder : "screens"
+}
