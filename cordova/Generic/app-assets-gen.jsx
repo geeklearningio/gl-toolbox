@@ -35,28 +35,21 @@ function main() {
     var doc;
     var wasOpen = false;
 
-    if (!app.documents.length) {
-        var sourceFile = File.openDialog("Select a 1:1 square PNG file that is at least 1024x1024.", "*.psd", false);
-        if (sourceFile == null) {
-            return;
-        }
-        doc = open(new File(sourceFile), OpenDocumentType.PHOTOSHOP);
-        if (doc == null) {
-            alert("Oh shit!\nSomething is wrong with the file. Make sure it is a valid PSD file.");
-            return;
-        }
-    } else {
-        doc = app.activeDocument;
-        wasOpen = true;
+
+    doc = open(new File(content.source), OpenDocumentType.PHOTOSHOP);
+    if (doc == null) {
+        alert("Oh shit!\nSomething is wrong with the file. Make sure it is a valid PSD file.");
+        return;
     }
 
-    var destFolder = Folder.selectDialog("Choose an output folder.\n*** Warning! ***\nThis will overwrite any existing files with the same name in this folder.");
+    var destFolder = content.destination;
     if (destFolder == null) {
         return;
     }
 
     var docName = doc.name;
 
+    var assets = content.assets;
 
     var actions = [];
     var variantGroups = [];
@@ -150,7 +143,7 @@ function main() {
         // for each variant
         for (var j = 0; j < allVariants.length; j++) {
             var variant = allVariants[j];
-            var outputDir = new Folder(variant.dir + "/screens/" + asset.target);
+            var outputDir = new Folder(variant.dir + "/" + content.folder + "/" + asset.target);
             if (!outputDir.exists) {
                 outputDir.create();
             }

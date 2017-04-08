@@ -34,5 +34,6 @@
 		quality: 100
 	},
 	source : "C:\\pathto\\source.psd",
-	destination : "C:\\pathto\\outputdirectory"
+	destination : "C:\\pathto\\outputdirectory",
+	folder : "screens"
 }
