@@ -5,6 +5,7 @@
 		{ "name": "icon-small-3x", "size": 87, "target": "ios" },
 		{ "name": "icon-40", "size": 40, "target": "ios" },
 		{ "name": "icon-40-2x", "size": 80, "target": "ios" },
+		{ "name": "icon-40-3x", "size": 120, "target": "ios"},
 		{ "name": "icon-50", "size": 50, "target": "ios" },
 		{ "name": "icon-50-2x", "size": 100, "target": "ios" },
 		{ "name": "icon-57", "size": 57, "target": "ios" },

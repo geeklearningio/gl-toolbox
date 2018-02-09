@@ -20,6 +20,7 @@
 		{ "name": "screen-iphone-portrait-568h", "width": 640, "height": 1136, "target": "ios" },
 		{ "name": "screen-iphone-portrait-667h", "width": 750, "height": 1334, "target": "ios" },
 		{ "name": "screen-iphone-portrait-736h", "width": 1242, "height": 2208, "target": "ios" },
+		{ "name": "screen-iphone-portrait-812h", "width": 1125, "height": 2436, "target": "ios"},
 		{ "name": "screen-ipad-landscape", "width": 1024, "height": 768, "target": "ios" },
 		{ "name": "screen-ipad-landscape-2x", "width": 2048, "height": 1536, "target": "ios" },
 		{ "name": "screen-iphone-landscape", "width": 480, "height": 320, "target": "ios" },
@@ -27,6 +28,7 @@
 		{ "name": "screen-iphone-landscape-568h", "width": 1136, "height": 640, "target": "ios" },
 		{ "name": "screen-iphone-landscape-667h", "width": 1334, "height": 750, "target": "ios" },
 		{ "name": "screen-iphone-landscape-736h", "width": 2208, "height": 1242, "target": "ios" },
+		{ "name": "screen-iphone-landscape-812h", "width": 2436, "height": 1125, "target": "ios"},
     ],
 	options : {
 		format : "PNG",
